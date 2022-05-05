@@ -1,5 +1,7 @@
 # group_7_project
 
+Alyssa Stringer, Juana Suarez, Kelly Maluccio
+
 ## Project Content
 
 Below is a list answering basic questions about our project and describing our plan for the project.

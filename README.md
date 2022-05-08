@@ -7,13 +7,15 @@ Alyssa Stringer, Juana Suarez, Kelly Maluccio
 Below is a list answering basic questions about our project and describing our plan for the project.
 
 Selected topic: 
-- Predicting disease
+- Predicting disease based on air quality in the U.S. from 500 cities.
 
 Reason for topic: 
 - Each of our group members are health conscious and know someone close to us who suffers from health issues, whether it be a disease or obesity or mental health. This led us to a discussion about factors affecting health or disease. So, we thought it would be interesting to see if air quality or income data predict different diseases. 
 
 Description of source data: 
 - We were able to find data for the diseases on the CDC website. The air quality and income data was found on Kaggle. We sorted through many data sites to find health data based on different diseases as well as air quality data. The air quality data also has income information that we can use as another variable in our regression model to see if we can predict disease from these factors. We were able to merge this data by the city location. Therefore, if we can predict disease based on air quality or income, we can look at which cities are affected the most or the least.
+- Additional Sources: Follow this link to read an article that describes particle matter (PM) which can be found in our dataset. The article also discusses the effect of PM on the air quality.
+[Particle Matter and Health](https://ww2.arb.ca.gov/resources/inhalable-particulate-matter-and-health)
 
 Question(s) we want to answer: 
 - Can we predict disease, such as diabetes or cancer, based on the city's air quality and/or income?

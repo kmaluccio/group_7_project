@@ -44,3 +44,7 @@ X1 = WHO_AirQuality_Database [“pm10”]
 X2 = WHO_AirQuality_Database [“pm25”]
 
 In the multiple regression model we ran, we found 17.9% of the population will have diabetes if the pm is 18 and the pm 2.5 is 14. Our root mean square error was 4.27.
+
+
+## Database
+For segment 1, our database is stored in a CSV file titled Air_V_Diabetes_Database.csv listed above. This file was cleaned with pandas and merged with the Diabetes dataset. For our provisional database, we plan to use a Flask app using SQL Alchomy. 

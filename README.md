@@ -33,7 +33,7 @@ According to [this study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5583950/#
 
 The formula for multiple linear regression is:
 
-![formula](https://github.com/kmaluccio/group_7_project/blob/kmaluccio/segment_1/images/regression-formula.png)
+![formula](https://github.com/kmaluccio/group_7_project/blob/main/images/regression-formula.png)
 
 In our multiple linear regression model our data points are the following: 
 

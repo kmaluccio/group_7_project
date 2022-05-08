@@ -14,7 +14,7 @@ Reason for topic:
 
 Description of source data: 
 - We were able to find data for the diseases on the CDC website. The air quality and income data was found on Kaggle. We sorted through many data sites to find health data based on different diseases as well as air quality data. The air quality data also has income information that we can use as another variable in our regression model to see if we can predict disease from these factors. We were able to merge this data by the city location. Therefore, if we can predict disease based on air quality or income, we can look at which cities are affected the most or the least.
-- Additional Sources: Follow this link to read an article that describes particle matter (PM) which can be found in our dataset. The article also discusses the effect of PM on the air quality.
+- Additional Resources: Follow this link to read an article that describes particle matter (PM) which can be found in our dataset. The article also discusses the effect of PM on the air quality.
 [Particle Matter and Health](https://ww2.arb.ca.gov/resources/inhalable-particulate-matter-and-health)
 
 Question(s) we want to answer: 
@@ -26,3 +26,21 @@ NOTE: All information will be put into presentation form (Google slides) during 
 ## GitHub and Communication
 
 For our project, we agreed to work together during class time and designate roles with specific tasks so that each group member has a fair amount of work to complete. Some tasks take more effort and need to be completed as a team or with at least two group members. Our communication is primarily through our Slack group chat and we also have a shared folder in Google Drive where we are keeping a notes document about the project and tasks that we have completed or need to complete and we will create our presentation slides in this folder. We have created the GitHub repository and each of us created our own branch for the first segment. We have agreed to message in slack anytime we work on something for the project or if we make any commits to our branch so that the group knows and can check the GitHub page for updates. We will not merge any of our branches to the main branch until the code runs without error and we all agree with the files. Lastly, we have also met on zoom and we will meet virtually over zoom if we want to or need to meet outside of class time/office hours.
+
+## Machine Learning Model
+
+According to [this study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5583950/#:~:text=The%20positive%20associations%20between%20PM,25%25%20in%20the%20long%E2%80%90term), PM 2.5 is the most significantly linked to diabetes. The Results section says, "every 10-μg/m3 increase in PM2.5, the risk of type 2 diabetes mellitus would increase by 25% in the long-term exposure." Our group looked at PM 2.5 and PM 10 data to see if it would predict the percentage of the population with diabetes. 
+
+The formula for multiple linear regression is:
+
+![formula](https://github.com/kmaluccio/group_7_project/blob/kmaluccio/segment_1/images/regression-formula.png)
+
+In our multiple linear regression model our data points are the following: 
+
+Y = 500_diabetes [“Data_Value”]
+
+X1 = WHO_AirQuality_Database [“pm10”]
+
+X2 = WHO_AirQuality_Database [“pm25”]
+
+In the multiple regression model we ran, we found 17.9% of the population will have diabetes if the pm is 18 and the pm 2.5 is 14. Our root mean square error was 4.27.

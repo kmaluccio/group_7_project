@@ -5,6 +5,7 @@ __pycache__/
 
 # python files to ignore
 config.py
+cleaning_datasets.ipynb
 
 # C extensions
 *.so

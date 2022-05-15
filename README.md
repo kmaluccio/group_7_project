@@ -154,6 +154,3 @@ Hover over each city bubble to see air quality level, and the percentage of peop
 
 
 ![formula](https://raw.githubusercontent.com/group_7_project/main/images/PM25VDiabetic.png)
-
-Interactive elements:
-Hover over each bubble to see the location of the data point.

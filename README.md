@@ -150,7 +150,7 @@ To create our storyboard we are using Tableau as our tool. We connect Tableau to
 ![formula](https://raw.githubusercontent.com/group_7_project/main/images/CityMap.png)
 
 Interactive elements:
-Hover over each city bubble to see air quality level, and the percentage of people with diabetes in that city
+Hover over each city bubble to see air quality level, and the percentage of people with diabetes in that city.
 
 
 ![formula](https://raw.githubusercontent.com/group_7_project/main/images/PM25VDiabetic.png)

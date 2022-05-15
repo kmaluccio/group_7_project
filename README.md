@@ -94,7 +94,7 @@ We then renamed the columns to all be lowercase in both air_data_df (referred to
 
 For our database, we first loaded the raw data (CSV files) for the air quality and diabetes data into python. In python, we created two dataframes with the necessary columns for the data analysis. This is where we cleaned the data and then used SQL Alchemy to store the data as two tables in pgAdmin. Once the python code runs, then we go to the schema.sql file and run the code that joins the two tables together. This merged table is exported to a CSV file which we connect to Tableau. If we paid for the service, we could connect to the server in Tableau and would not need to export another CSV file to access our database.
 
-![formula](https://raw.githubusercontent.com/group_7_project/main/images/SQL.png)
+![formula](images/SQL.png)
 
 ## Machine Learning Model
 
@@ -147,10 +147,10 @@ To create our storyboard we are using Tableau as our tool. We connect Tableau to
 
 [Link to Tableau Public](https://public.tableau.com/shared/CM5SFSS4M?:display_count=n&:origin=viz_share_linK)
 
-![formula](https://raw.githubusercontent.com/group_7_project/main/images/CityMap.png)
+![formula](images/CityMap.png)
 
 Interactive elements:
 Hover over each city bubble to see air quality level, and the percentage of people with diabetes in that city.
 
 
-![formula](https://raw.githubusercontent.com/group_7_project/main/images/PM25VDiabetic.png)
+![formula](images/PM25VDiabetic.png)

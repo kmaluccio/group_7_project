@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 .DS_Store
+images/.DS_Store
 
 # python files to ignore
 config.py

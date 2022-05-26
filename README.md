@@ -5,7 +5,7 @@ Alyssa Stringer, Juana Suarez, Kelly Maluccio
 ## Project Content
 
 ### Selected topic: 
-- We are predicting common diseases that impact majority of Americans, such as diabetes, cancer and asthma, based on air quality from 500 different U.S. cities
+- We are predicting common diseases that impact majority of Americans, such as diabetes, asthma or cancer, based on air quality from 500 different U.S. cities
 
 ### Reason for topic: 
 - Being health conscious is important to our group members. Whether cancer, obesity, or mental health, we all know someone close to us who suffers from health issues. The conversation led us to a discussion about external factors affecting health. How does air quality, population, and state predict the prevalence of various diseases in cities? 
@@ -17,6 +17,9 @@ Alyssa Stringer, Juana Suarez, Kelly Maluccio
 
 ### Question(s) we want to answer: 
 - Can we predict disease, such as diabetes or asthma, based on the city's air quality, state, and population?
+- Does air quality and diabetes or air quality and asthma have any correlation?
+- Looking at these 500 US cities, what can we say about the percentage of disease in those locations using the air quality data?
+- Should one consider air quality when moving to a particular city?
 
 # Project Outline:
 1. To begin this project, we wrote python code to organize the raw data so that we could load it into a SQL database to perform our analysis. This process is described in more detail in the database section below.
@@ -54,7 +57,7 @@ According to [this study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5583950/#
 
 ### Splitting our data into X and y
 - y = data_value: The percentage of people in that city with Diabetes (or asthma)
-- X = remaining scaled features:
+- X_i = remaining scaled features:
     - color_pm10
     - color_pm25
     - data_value_type

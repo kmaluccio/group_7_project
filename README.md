@@ -86,6 +86,9 @@ We worked together during and after class on the machine learning model. Kelly w
 
 According to [this study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5583950/#:~:text=The%20positive%20associations%20between%20PM,25%25%20in%20the%20long%E2%80%90term), PM 2.5 is the most significantly linked to diabetes. The Results section says, "every 10-μg/m3 increase in PM2.5, the risk of type 2 diabetes mellitus would increase by 25% in the long-term exposure." Our group looked at PM 2.5 and PM 10 data to see if it would predict the percentage of the population with diabetes. 
 
+### Why we didn't use a confusion matrix
+This is a multiple linear regression model so we do not have use for a confusion matrix. This is does not contain binary features or a classification model which is what is used for confusion matrix. 
+
 ### Splitting our data into X and y
 - X = Data_Value: The percentage of people in that city with Diabetes
 - y = The rest of the scaled features:

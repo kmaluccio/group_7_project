@@ -2,6 +2,39 @@
 
 Alyssa Stringer, Juana Suarez, Kelly Maluccio
 
+## Index
+Here's a description of the files we have in each folder, as well as the function of each file. 
+
+### Raw_Data
+The following files are the raw data we pulled from our sources in order to conduct the project:
+
+- 500_asthma.csv
+- 500_cancer.csv
+- 500_diabetes.csv
+- WHO_AirQuality_Database_2018.csv
+
+### cleaning_data
+This folder contains the python files for cleaning both the 500_asthma.csv data as well as the 500_diabetes.csv data. The schema.sql file is the SQL code used to join the dataframes together to create our dataset. 
+
+- clean_asthma_data_for_sql.ipynb
+- clean_dia_data_for_sql.ipynb
+- schema.sql
+
+### data_csv
+This folder holds the two CSV files wiith our merged, cleaned data from the original data sources. These were created via PgAdmin using the schema.sql code.
+
+- merged_air_asthma.csv
+- merged_air_dia.csv
+
+### images
+These contain images, screenshots of data, graphs, all relevent resources included in the readme. 
+
+### machine_learning
+This folder contains the two python files that loaded our data_csv files in to perform Linear Regression Machine Learning for both the ashtma data and the diabetes data.
+
+- Machine_learning_model_asthma.ipynb
+- Machine_learning_model_diabetes.ipynb
+
 ## Project Content
 
 ### Selected topic: 

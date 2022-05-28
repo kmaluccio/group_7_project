@@ -7,7 +7,7 @@ __pycache__/
 images/.DS_Store
 
 # python files to ignore
-config.py
+cleaning_data/config.py
 cleaning_datasets.ipynb
 
 # C extensions

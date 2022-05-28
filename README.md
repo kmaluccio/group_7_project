@@ -4,105 +4,74 @@ Alyssa Stringer, Juana Suarez, Kelly Maluccio
 
 ## Project Content
 
-Below is a list answering basic questions about our project and describing our plan for the project.
+### Selected topic: 
+- We are predicting common diseases that impact majority of Americans, such as diabetes, asthma or cancer, based on air quality from 500 different U.S. cities
 
-Selected topic: 
-- We are predicting common diseases that impact majority of Americans, such as diabetes, cancer and asthma, based on air quality from 500 different U.S. cities
-
-Reason for topic: 
+### Reason for topic: 
 - Being health conscious is important to our group members. Whether cancer, obesity, or mental health, we all know someone close to us who suffers from health issues. The conversation led us to a discussion about external factors affecting health. How does air quality, population, and state predict the prevalence of various diseases in cities? 
 
-Description of source data: 
+### Description of source data: 
 - Our group found data from the [CDC website](https://www.cdc.gov/places/) on diseases, and data from the World Health Organization on air quality data through [Kaggle](https://www.kaggle.com/datasets/erelin6613/ambient-air-quality-database-who?resource=download). We were able to merge both data sets by city. Our project will be able to predict disease based on air quality, location, and population and identify the most affected cities with various diseases. 
 -  Additional Resources: Follow this link to read an article that describes particle matter (PM) and its effect on health.
 [Particle Matter and Health](https://ww2.arb.ca.gov/resources/inhalable-particulate-matter-and-health)
 
-Question(s) we want to answer: 
-- Can we predict disease, such as diabetes or cancer, based on the city's air quality, state, and population?
+### Question(s) we want to answer: 
+- Can we predict disease, such as diabetes or asthma, based on the city's air quality, state, and population?
+- Does air quality and diabetes or air quality and asthma have any correlation?
+- Looking at these 500 US cities, what can we say about the percentage of disease in those locations using the air quality data?
+- Should one consider air quality when moving to a particular city?
+
+# Project Outline:
+1. To begin this project, we wrote python code to organize the raw data so that we could load it into a SQL database to perform our analysis. This process is described in more detail in the database section below.
+
+2. In a Jupyter Notebook python file, we read in the data from our database to start the machine learning model process. We dropped the low and high confidence limit since these metrics represent a minimum and maximum for the value we are trying to predict, therefore this would add strong bias to the model and it would predict perfectly.
+
+3. Next we created three different dataframes to scale our data for the machine learning model. We used **OneHotEncoder** to scale the columns that are objects: color_pm25 (colors to indicate high, medium or low PM2.5 levels for air quality), color_pm10 (colors to indicate high, medium or low PM10 levels for air quality) and data_value_type (two different types described below).
+        
+        Air Quality data metrics that determine air quality:
+        - PM10 is any particulate matter in the air with a diameter of 10 micrometers or less, including smoke, dust, soot, salts, acids, and metals.
+        - PM2.5 is fine particulate matter. PM2.5 is an air pollutant that is a concern for people's health when levels in air are high. PM2.5 are tiny particles in the air that reduce visibility and cause the air to appear hazy when levels are elevated. 
+     
+        Therefore, high levels of PM2.5 or PM10 is what we believe correlates with high levels of disease based on location.
+
+        Diabetes data metrics:
+        Data Value Type is between two types of rates that are utilized in the MOPHIMS MICA system: crude and age-adjusted rates:
+        1. Crude Prevalence is defined as the total number of events, or count, divided by the mid-year total population of the selected geography and multiplied by a constant, which is a multiple of 10.
+        2. Age-Adjusted rates allows fairer comparisons to be made between groups with different age distributions. So if there are more elderly people in the population, there could be higher disease rates.
+        - Data Value is the value given based on the above rates, or the percentage of people with the disease.
 
 
-## Presentation
-[Link to Google Slides presentation](https://docs.google.com/presentation/d/1qG3MhF2sn1fkCNRhy3UWNuz9jSNbHSO7k6iK9xUxawY/edit?usp=sharing)
+4. We used **pandas get_dummies** to scale the city, state and unique zip since these features have more than 2 or 3 unique entries. After running our code with these columns, it took about 18 minutes to train and test the data. Due to time constraints and errors that we needed to fix to calculate an accuracy score, we ended up dropping the unique zip (zip code) column. 
 
-## GitHub and Communication
+5. We used **StandardScaler** to scale the columns pm10, pm2.5 and population so that the model is given similar values to learn and predict using the given data.
 
-For our project, we agreed to work together during class time and designate roles with specific tasks so that each group member has a fair amount of work to complete. Some tasks take more effort and need to be completed as a team or with at least two group members. Our communication is primarily through our Slack group chat, and we also have a shared folder in Google Drive where we keep a notes document about the project and tasks that we have completed. We will also create our google slides presentation in this folder. We created a new GitHub repository, and each of us started an individual branch for the first segment. We have agreed to message in Slack when we work on something for the project or if we make any commits to our branch so that the group knows and can check the GitHub page for updates. We will not merge any of our branches to the main branch until the code runs without error and we all agree with the files. Lastly, we meet on zoom if we need to meet outside of class time/office hours.
+6. Now with the three scaled datasets, we combined them together using concat to create a new, scaled dataframe ready to be used for Machine Learning and to upload into our SQL database.
 
-## Data Exploration
-We first loaded two of our datasets into a Python file in order to use pandas to explore and clean the data. We are exploring the data with python and pandas before loading the two separate datasets into pgAdmin and using SQL to join these two datasets together in order to have one set of data to work with. 
+7. Below we describe the machine learning model and describe the results along with recommendations for further analysis.
 
-In order to make sense of our data, we needed to understand the metrics given to us in each data set and what exactly those metrics mean.
-
-**Air Quality data metrics that determine air quality**:
-- **PM10** is any particulate matter in the air with a diameter of 10 micrometers or less, including smoke, dust, soot, salts, acids, and metals.
-- **PM2.5** is fine particulate matter. PM2.5 is an air pollutant that is a concern for people's health when levels in air are high. PM2.5 are tiny particles in the air that reduce visibility and cause the air to appear hazy when levels are elevated.
-
-Therefore, high levels of PM2.5 or PM10 is what we are looking for that we believe correlates with high levels of disease based on location.
-
-**Diabetes data metrics**:
-- **Data Value Type** is between two types of rates that are utilized in the MOPHIMS MICA system: crude and age-adjusted rates.
-
-    - **Crude Prevalence** is defined as the total number of events, or count, divided by the mid-year total population of the selected geography and multiplied by a constant, which is a multiple of 10.
-
-    - Age-Adjusted rates allows fairer comparisons to be made between groups with different age distributions. So if there are more elderly people in the population, there could be higher disease rates.
-
-- **Data Value** is the number value given based on the above rates, or the percentage of people with the disease.
-
-We first wanted to combine the WHO air quality dataset with just one of our diseases data, so we started off with the diabetes data since we discovered that PM 2.5 (air quality) is the most significantly linked to diabetes. We used pandas and python to load the two raw data CSV files into a python script before cleaning the data. 
-
-We decided to keep the following columns from the WHO air quality data:
-- Country
-- City
-- pm10
-- Year
-- pm2.5
-- Latitude
-- Longitude
-- Population
-- date_compiled
-- color_pm2.5
-- color_pm10
-
-We decided to keep these columns because this is the complete list of relevant data we need to help our analysis. We need the city, country, year, latitude and longitude in order to determine the city and gather the same information from each city that we will get from the disease dataset. We needed the pm10 and pm2.5 data to represent the particle matter in the air which is directly related to air quality.  
-
-We decided to keep the following columns from the diabetes data:
-- Year
-- StateDesc (state)
-- CityName
-- UniqueID
-- Data_Value_Type
-- Data_Value
-- Low_Confidence_Limit
-- High_Confidence_Limit
-- PopulationCount
-- GeoLocation
-
-We need the location columns in order to join and match with the WHO air quality data location. We also needed the Data_Value and Data_Value_Type for analysis, these columns represent the percentage of people with diabetes in each particular city.
-
-We then dropped all other columns that are not listed above. All other columns were repetitive, did not give us valuable information, had null or NAN values, or would confuse the machine learning model. 
-
-We then renamed the columns to all be lowercase in both air_data_df (referred to as WHO air quality data) and diabetes_data_df. This is because SQL will not join tables unless the column names are all the same case level.
-
-**Further filtering and cleaning of the data included**:
-- Filter air_data_df for just the United States of America since we are only looking at US cities, dropped the rest.
-- Drop the “-” next to the city names in air_data_df in order to match the city names to the diabetes_data_df.
-- Drop NA in the air_quality_df and check the shape of the dataframe to see how many rows were dropped, there were no NAs in air_quality_df. We dropped NAs in the diabetes_data_df as well and checked the shape of the dataframe. 
-- Filter the air_quality_df to only the year 2016 in order to match it closest to the year 2017 which is the year of the data for diabetes_data_df.
-
-
-## Database
-
-For our database, we first loaded the raw data (CSV files) for the air quality and diabetes data into python. In python, we created two dataframes with the necessary columns for the data analysis. This is where we cleaned the data and then used SQL Alchemy to store the data as two tables in pgAdmin. Once the python code runs, then we go to the schema.sql file and run the code that joins the two tables together. This merged table is exported to a CSV file which we connect to Tableau. If we paid for the service, we could connect to the server in Tableau and would not need to export another CSV file to access our database.
-
-![formula](images/SQL.png)
+8. Finally, we created a dashboard in Tableau public and a google slides presentation - both links are given in sections below.
 
 ## Machine Learning Model
 
-According to [this study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5583950/#:~:text=The%20positive%20associations%20between%20PM,25%25%20in%20the%20long%E2%80%90term), PM 2.5 is the most significantly linked to diabetes. The Results section says, "every 10-μg/m3 increase in PM2.5, the risk of type 2 diabetes mellitus would increase by 25% in the long-term exposure." Our group looked at PM 2.5 and PM 10 data to see if it would predict the percentage of the population with diabetes. 
+According to [this study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5583950/#:~:text=The%20positive%20associations%20between%20PM,25%25%20in%20the%20long%E2%80%90term), PM 2.5 is the most significantly linked to diabetes. The Results section says, "every 10-μg/m3 increase in PM2.5, the risk of type 2 diabetes mellitus would increase by 25% in the long-term exposure." Our group looked at PM 2.5 and PM 10 data to see if it would predict the percentage of the population with diabetes or asthma. The code and process is the same for analyzing both diabetes and asthma since we could replace the diabetes data with asthma data then run the analysis again.
+
+### Splitting our data into X and y
+- y = data_value: The percentage of people in that city with Diabetes (or asthma)
+- X_i = remaining scaled features:
+    - color_pm10
+    - color_pm25
+    - data_value_type
+    - population
+    - pm25
+    - pm10
+    - city
+    - state
 
 The formula for multiple linear regression is:
 
 ![formula](https://raw.githubusercontent.com/kmaluccio/group_7_project/main/images/regression-formula.png)
+
+where the X values represent our features and y is what we want to predict based on those features.
 
 Benchmarks according to the WHO_AirQuality_Database_2018.csv for pm 2.5 and  pm 10: 
 
@@ -124,33 +93,60 @@ pm 10
 - 20 - <30 = yellow
 - 30-<50 = dark red
 
+### Splitting into training and testing sets
 
-In our multiple linear regression model our data points are the following:
+To split into training and testing sets, we use sklearn.model_selection.train_test_split with the features above. Reference this [medium article](https://medium.com/@sametgirgin/multiple-linear-regression-model-in-7-steps-with-python-f02dbb13c51e) as an example of a multiple linear regression with test and train data. 
 
-Y = % of the population that is diagnosed diabetic [data_value]
+### Fitting the Model
+It took 0.023708 seconds to fit the model, run on a computer with memory: 4 GB 1600 MHz DDR3 and processor: 1.6 GHz Dual-Core Intel Core i5. Note that when we included unique zip as a feature in our model, it took 17 minutes 28 seconds to fit the model, so by removing this one feature it allowed for us to run the model in a timely manner.
 
-X1 = pm 10 air quality level [“pm10”]
+### Results: Diabetes Data
+#### Initial OLS Regression Results using y_test and X_test
+![initial OLS](images/OLS_Regression_Results.png)
 
-X2 = pm 2.5 air quality level  [“pm25”]
+#### Modified OLS Regression Results
+![OLS](images/modified_OLS_Regression_Results.png)
 
-X3 = Population ["population"]
+R-squared is a statistical measure ranging from 0 to 1 where 1 means the data is perfectly correlated and 0 means the data has no correlation. We want this value to be as close to 1 as possible, which means our initial R-squared of 0.069 was our benchmark and we made changes to better fit our model and improve the accuracy. Our initial result of 0.069 means our data has almost no correlation. However, when we added city and state back into the features for X, we ran the code again to get a new R-squared equal to 0.369 which improved tremendously. Thus, this shows that the city and state are important features in our model and there is some correlation between air quality, location, population and diabetes.
 
-X4 = State ["state"]
+#### Initial Sklearn.metrics using y_test and y_pred
+![initial sklearn](images/sklearnsummary.png)
 
-To split into training and testing sets, we will use sklearn.model_selection.train_test_split with the features above. Reference this [medium article](https://medium.com/@sametgirgin/multiple-linear-regression-model-in-7-steps-with-python-f02dbb13c51e) as an example of a multiple linear regression with test and train data. 
+#### Modified Sklearn.metrics using y_test and y_pred
+![modified sklearn](images/modified_sklearnsummary.png)
 
-We chose the multiple linear regression model because it fits the needs of our data set. The benefit of linear regression is that it’s not as complex as other advanced machine learning models, and it’s easier for our viewers to understand. We have multiple X variables to help us predict on y variables. We want to predict the % of the population that is diabetic based on population, location, and air quality. One limitation of this model is that other variables influence being diabetic that we are not testing, which can weaken the predictability. 
+Mean absolute error (MAE): represents the difference between the original and the predicted values by averaging their absolute difference of the whole dataset
 
-## Dashboard
+Mean squared error (MSE): represents the difference between the original and predicted values, by squaring the average difference over the dataset
 
-To create our storyboard we are using Tableau as our tool. We connect Tableau to our database and then create visualizations for the storyboard. Our interactive elements will be the visualizations of our data including a map of all US cities that are in the dataset and graphs to compare the particle matter values for each city with percentage of the population with diabetes.
+We want the MAE and MSE numbers to be as close to 0 as possible. As you can see by the images, in our initial model these numbers were high with MSE = 16.94 and a low R-squared value of 0.068 meaning our model was not predicting the percent diabetic accurately. Once we ran this metric with the modified version, to include city and state, our MSE decreased to 12.1 and R-squared value changed to 0.335 meaning the model is making a more accurate prediction.
 
-[Link to Tableau Public](https://public.tableau.com/shared/CM5SFSS4M?:display_count=n&:origin=viz_share_linK)
+### Results: Asthma Data
 
-![formula](images/CityMap.png)
+Using the same model, replacing the diabetes data with the asthma data we were able to get similar results. We knew to include city and state as features so we present only this result. The R-squared value using the test data was 0.503 meaning there is a correlation between air quality, location, population and asthma. Metrics for the test and predicted y values resulted in R-squared = 0.474 and MSE = 1.71 meaning there is little difference in the test and predicted values for percent of the population with asthma.
 
-Interactive elements:
-Hover over each city bubble to see air quality level, and the percentage of people with diabetes in that city.
+Lastly, our results showed us that there is some correlation between the features air quality, location and population with diabetes and asthma. However, the correlation is weak due to the fact that there are many more features causing these diseases and we have only taken a small snapshot of data for our specific features.
+
+### Recommendations for further analysis
+
+Given the time constraints of this project, we have the following recommendations to try improving the analysis results:
+- Try using a different machine learning model, such as clustering. To do this, you run PCA (principal component analysis) using the trained and tested data and then cluster using K-means. Begin by trying k=3 and analyze the result
+- Add more features to your data that may help to predict the diabetes or asthma percentage such as sleep, age, or other habits of people in each city
+- Gather more data for the model to get a better picture of certain features such as air quality in each location
+
+## Dashboard in Tableau
+
+[Link to Tableau Public](https://public.tableau.com/views/AirQualityVDiabetes/Dashboard1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
+
+![dashboard screenshot](images/dashboardTableau.png)
+
+A screenshot of the Tableau dashboard with maps and visualizations of our data. Select the link to learn more and use the interactive elements.
+
+## Presentation
+[Link to Google Slides presentation](https://docs.google.com/presentation/d/1qG3MhF2sn1fkCNRhy3UWNuz9jSNbHSO7k6iK9xUxawY/edit?usp=sharing)
 
 
-![formula](images/PM25VDiabetic.png)
+## Database
+
+To create our database, we load in the raw data (CSV files) for the air quality, diabetes and asthma data into python. In python, we created two dataframes with the necessary columns for the data analysis (we did this for air quality and diabetes, then again for air quality and asthma). Here we cleaned the data and then used SQL Alchemy to store the data as two tables in pgAdmin. Once the python code runs, we use the query written in the schema.sql file and run the code that joins the two tables together. This merged table is exported to a CSV file which we connect to Tableau for our dashboard. NOTE: If we paid for the service, we could connect to the server in Tableau and would not need to export another CSV file to access our database.
+

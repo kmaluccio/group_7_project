@@ -88,8 +88,8 @@ This folder contains the two python files that loaded our data_csv files in to p
 
 According to [this study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5583950/#:~:text=The%20positive%20associations%20between%20PM,25%25%20in%20the%20long%E2%80%90term), PM 2.5 is the most significantly linked to diabetes. The Results section says, "every 10-μg/m3 increase in PM2.5, the risk of type 2 diabetes mellitus would increase by 25% in the long-term exposure." Our group looked at PM 2.5 and PM 10 data to see if it would predict the percentage of the population with diabetes or asthma. The code and process is the same for analyzing both diabetes and asthma since we could replace the diabetes data with asthma data then run the analysis again.
 
-### Why we didn't use a confusion matrix
-This is a multiple linear regression model so we do not have use for a confusion matrix. This is does not contain binary features or a classification model which is what is used for confusion matrix. 
+### Reason for not creating a confusion matrix
+This is a multiple linear regression model so we do not have use for a confusion matrix. This does not contain binary features or a classification model which is what is used for confusion matrix.
 
 ### Splitting our data into X and y
 - y = data_value: The percentage of people in that city with Diabetes (or asthma)
@@ -137,20 +137,23 @@ To split into training and testing sets, we use sklearn.model_selection.train_te
 It took 0.023708 seconds to fit the model, run on a computer with memory: 4 GB 1600 MHz DDR3 and processor: 1.6 GHz Dual-Core Intel Core i5. Note that when we included unique zip as a feature in our model, it took 17 minutes 28 seconds to fit the model, so by removing this one feature it allowed for us to run the model in a timely manner.
 
 ### Results: Diabetes Data
-#### Initial OLS Regression Results using y_test and X_test
-![initial OLS](images/OLS_Regression_Results.png)
-
-#### Modified OLS Regression Results
+#### Final OLS Regression Results
 ![OLS](images/modified_OLS_Regression_Results.png)
 
+#### Final Sklearn.metrics using y_test and y_pred
+![modified sklearn](images/modified_sklearnsummary.png)
+
+#### R-squared Results
+
 R-squared is a statistical measure ranging from 0 to 1 where 1 means the data is perfectly correlated and 0 means the data has no correlation. We want this value to be as close to 1 as possible, which means our initial R-squared of 0.069 was our benchmark and we made changes to better fit our model and improve the accuracy. Our initial result of 0.069 means our data has almost no correlation. However, when we added city and state back into the features for X, we ran the code again to get a new R-squared equal to 0.369 which improved tremendously. Thus, this shows that the city and state are important features in our model and there is some correlation between air quality, location, population and diabetes.
+
+#### Initial OLS Regression Results using y_test and X_test
+![initial OLS](images/OLS_Regression_Results.png)
 
 #### Initial Sklearn.metrics using y_test and y_pred
 ![initial sklearn](images/sklearnsummary.png)
 
-#### Modified Sklearn.metrics using y_test and y_pred
-![modified sklearn](images/modified_sklearnsummary.png)
-
+#### MAE and MSE Results
 Mean absolute error (MAE): represents the difference between the original and the predicted values by averaging their absolute difference of the whole dataset
 
 Mean squared error (MSE): represents the difference between the original and predicted values, by squaring the average difference over the dataset
@@ -170,6 +173,9 @@ Given the time constraints of this project, we have the following recommendation
 - Add more features to your data that may help to predict the diabetes or asthma percentage such as sleep, age, or other habits of people in each city
 - Gather more data for the model to get a better picture of certain features such as air quality in each location
 
+### Model choice with limitations and benefits
+We chose the multiple linear regression model because it fits the needs of our data set. The benefit of linear regression is that it’s not as complex as other advanced machine learning models, and it’s easier for our viewers to understand. We have multiple X variables to help us predict on y variables. We want to predict the % of the population that is diabetic based on population, location, and air quality. One limitation of this model is that other variables influence being diabetic that we are not testing, which can weaken the predictability.
+
 ## Dashboard in Tableau
 
 [Link to Tableau Public](https://public.tableau.com/views/AirQualityVDiabetes/Dashboard1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
@@ -180,7 +186,6 @@ A screenshot of the Tableau dashboard with maps and visualizations of our data. 
 
 ## Presentation
 [Link to Google Slides presentation](https://docs.google.com/presentation/d/1qG3MhF2sn1fkCNRhy3UWNuz9jSNbHSO7k6iK9xUxawY/edit?usp=sharing)
-
 
 ## Database
 

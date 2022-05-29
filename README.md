@@ -173,6 +173,9 @@ Given the time constraints of this project, we have the following recommendation
 - Add more features to your data that may help to predict the diabetes or asthma percentage such as sleep, age, or other habits of people in each city
 - Gather more data for the model to get a better picture of certain features such as air quality in each location
 
+### Model choice with limitations and benefits
+We chose the multiple linear regression model because it fits the needs of our data set. The benefit of linear regression is that it’s not as complex as other advanced machine learning models, and it’s easier for our viewers to understand. We have multiple X variables to help us predict on y variables. We want to predict the % of the population that is diabetic based on population, location, and air quality. One limitation of this model is that other variables influence being diabetic that we are not testing, which can weaken the predictability.
+
 ## Dashboard in Tableau
 
 [Link to Tableau Public](https://public.tableau.com/views/AirQualityVDiabetes/Dashboard1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
@@ -183,7 +186,6 @@ A screenshot of the Tableau dashboard with maps and visualizations of our data. 
 
 ## Presentation
 [Link to Google Slides presentation](https://docs.google.com/presentation/d/1qG3MhF2sn1fkCNRhy3UWNuz9jSNbHSO7k6iK9xUxawY/edit?usp=sharing)
-
 
 ## Database
 

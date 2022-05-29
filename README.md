@@ -137,8 +137,13 @@ To split into training and testing sets, we use sklearn.model_selection.train_te
 It took 0.023708 seconds to fit the model, run on a computer with memory: 4 GB 1600 MHz DDR3 and processor: 1.6 GHz Dual-Core Intel Core i5. Note that when we included unique zip as a feature in our model, it took 17 minutes 28 seconds to fit the model, so by removing this one feature it allowed for us to run the model in a timely manner.
 
 ### Results: Diabetes Data
-#### Modified OLS Regression Results
+#### Final OLS Regression Results
 ![OLS](images/modified_OLS_Regression_Results.png)
+
+#### Final Sklearn.metrics using y_test and y_pred
+![modified sklearn](images/modified_sklearnsummary.png)
+
+#### R-squared Results
 
 R-squared is a statistical measure ranging from 0 to 1 where 1 means the data is perfectly correlated and 0 means the data has no correlation. We want this value to be as close to 1 as possible, which means our initial R-squared of 0.069 was our benchmark and we made changes to better fit our model and improve the accuracy. Our initial result of 0.069 means our data has almost no correlation. However, when we added city and state back into the features for X, we ran the code again to get a new R-squared equal to 0.369 which improved tremendously. Thus, this shows that the city and state are important features in our model and there is some correlation between air quality, location, population and diabetes.
 
@@ -148,9 +153,7 @@ R-squared is a statistical measure ranging from 0 to 1 where 1 means the data is
 #### Initial Sklearn.metrics using y_test and y_pred
 ![initial sklearn](images/sklearnsummary.png)
 
-#### Modified Sklearn.metrics using y_test and y_pred
-![modified sklearn](images/modified_sklearnsummary.png)
-
+#### MAE and MSE Results
 Mean absolute error (MAE): represents the difference between the original and the predicted values by averaging their absolute difference of the whole dataset
 
 Mean squared error (MSE): represents the difference between the original and predicted values, by squaring the average difference over the dataset
